@@ -1,5 +1,9 @@
 package com.uce.edu.demo.consutorio;
 
+import org.springframework.stereotype.Component;
+
+//se coloca una metadata
+@Component
 public class Paciente {
 	
 	private String nombre;
