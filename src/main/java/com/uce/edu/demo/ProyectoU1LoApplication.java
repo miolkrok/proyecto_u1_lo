@@ -1,18 +1,31 @@
 package com.uce.edu.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.demo.modelo.Estudiante;
+import com.uce.edu.demo.modelo.Materia;
+import com.uce.edu.demo.modelo.Matricula;
 import com.uce.edu.demo.service.IEstudianteService;
+import com.uce.edu.demo.service.IMateriaService;
+import com.uce.edu.demo.service.IMatriculaService;
 
 @SpringBootApplication
 public class ProyectoU1LoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private IEstudianteService estudianteService;
+	
+	@Autowired
+	private IMateriaService materiaService;
+	
+	@Autowired
+	private IMatriculaService matriculaService;
 	
 
 	public static void main(String[] args) {
@@ -43,6 +56,37 @@ public class ProyectoU1LoApplication implements CommandLineRunner{
 		
 		this.estudianteService.borrarEstudiante("1849248741");
 		
+		//consumir los metodos CRUD de materia
+		
+		Materia mate = new Materia();
+		List<Materia> m1 = new ArrayList<>();
+		mate.setNombre("Programacion");
+		mate.setSemestre("sexto semestre");
+		
+		m1.add(mate);
+		this.materiaService.ingresarMateria(mate);
+		
+		mate.setNombre("Programacion Avanzada II");
+		this.materiaService.actualizarMateria(mate);
+		
+		this.materiaService.buscarPorNombre("Programacion Avanzada II");
+		
+		this.materiaService.borrarMateria("Programacion Avanzada II");
+		
+		//consumir los metodos CRUD de matricula
+		
+		Matricula matri = new Matricula();
+		matri.setNumero("51598563215");
+		matri.setEstudiante(e);
+		matri.setMateria(m1);
+		this.matriculaService.ingresarMatricula(matri);
+		
+		matri.setNumero("51598563218");
+		this.matriculaService.actualizarMatricula(matri);
+		
+		this.matriculaService.buscarPorNumero("51598563218");
+		
+		this.matriculaService.borrarMatricula("51598563218");
 		
 	}
 
