@@ -24,4 +24,16 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService{
 		return this.cuentaBancariaRepository.buscar(numero);
 	}
 
+	@Override
+	public void insertar(CuentaBancaria c) {
+		// TODO Auto-generated method stub
+		this.cuentaBancariaRepository.insertar(c);
+	}
+
+	@Override
+	public void eliminar(String numero) {
+		// TODO Auto-generated method stub
+		this.cuentaBancariaRepository.eliminar(numero);
+	}
+
 }

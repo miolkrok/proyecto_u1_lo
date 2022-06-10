@@ -18,6 +18,7 @@ public class DepositoServiceImpl implements IDepositoService {
 	@Autowired
 	private IDepositoRepository depositoRepository;
 	
+	//insertar o crear
 	@Override
 	public void realizarDeposito(String numeroCtaDestino, BigDecimal monto) {
 		// TODO Auto-generated method stub
@@ -32,6 +33,24 @@ public class DepositoServiceImpl implements IDepositoService {
 		dep.setNumeroCuentaDestino(numeroCtaDestino);
 		dep.setMonto(monto);
 		this.depositoRepository.insertarDeposito(dep);
+	}
+
+	@Override
+	public Deposito buscar(String numeroCuentaDestino) {
+		// TODO Auto-generated method stub
+		return this.depositoRepository.buscar(numeroCuentaDestino);
+	}
+
+	@Override
+	public void actualizar(Deposito d) {
+		// TODO Auto-generated method stub
+		this.depositoRepository.actualizar(d);
+	}
+
+	@Override
+	public void eliminar(String numeroCuentaDestino) {
+		// TODO Auto-generated method stub
+		this.depositoRepository.eliminar(numeroCuentaDestino);
 	}
 
 }
