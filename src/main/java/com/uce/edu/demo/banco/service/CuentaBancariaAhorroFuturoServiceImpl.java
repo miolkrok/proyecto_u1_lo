@@ -2,46 +2,46 @@ package com.uce.edu.demo.banco.service;
 
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.banco.modelo.CuentaBancaria;
-import com.uce.edu.demo.banco.repository.ICuentaBancariaRepository;
 
 @Service
-public class CuentaBancariaServiceImpl implements ICuentaBancariaService{
+@Qualifier("futuro")
+public class CuentaBancariaAhorroFuturoServiceImpl implements ICuentaBancariaService{
 
-	@Autowired
-	private ICuentaBancariaRepository cuentaBancariaRepository;
-	
 	@Override
-	public void actualizar(CuentaBancaria c) {
+	public void insertar(CuentaBancaria c) {
 		// TODO Auto-generated method stub
-		this.cuentaBancariaRepository.actualizar(c);
+		
 	}
 
 	@Override
 	public CuentaBancaria buscar(String numero) {
 		// TODO Auto-generated method stub
-		return this.cuentaBancariaRepository.buscar(numero);
+		return null;
 	}
 
 	@Override
-	public void insertar(CuentaBancaria c) {
+	public void actualizar(CuentaBancaria c) {
 		// TODO Auto-generated method stub
-		this.cuentaBancariaRepository.insertar(c);
+		
 	}
 
 	@Override
 	public void eliminar(String numero) {
 		// TODO Auto-generated method stub
-		this.cuentaBancariaRepository.eliminar(numero);
+		
 	}
 
 	@Override
 	public BigDecimal calcularInteres(String numeroCta, BigDecimal saldo) {
 		// TODO Auto-generated method stub
-		return null;
+			BigDecimal interes = new BigDecimal(950).multiply(new BigDecimal(5)).divide(new BigDecimal(100));
+			interes = interes.add(saldo.add(new BigDecimal(2)));
+		
+		return interes;
 	}
 
 }

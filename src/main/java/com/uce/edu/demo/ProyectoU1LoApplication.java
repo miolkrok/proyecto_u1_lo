@@ -23,7 +23,6 @@ public class ProyectoU1LoApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-
 		BigDecimal interes= this.bancaria.calcularInteres("1213");
 		System.out.println(interes);
 	}
