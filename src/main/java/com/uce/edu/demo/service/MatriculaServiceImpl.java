@@ -3,6 +3,8 @@ package com.uce.edu.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uce.edu.demo.modelo.HorarioGeneral;
+import com.uce.edu.demo.modelo.HorarioMateria;
 import com.uce.edu.demo.modelo.Matricula;
 import com.uce.edu.demo.modelo.ProfesorGeneral;
 import com.uce.edu.demo.modelo.ProfesorMateria;
@@ -20,6 +22,12 @@ public class MatriculaServiceImpl implements IMatriculaService{
 	
 	@Autowired
 	private ProfesorMateria profesorMateria;
+	
+	@Autowired
+	private HorarioGeneral horarioGeneral;
+	
+	@Autowired
+	private HorarioMateria horarioMateria;
 
 	@Override
 	public void ingresarMatricula(Matricula e) {
@@ -38,7 +46,13 @@ public class MatriculaServiceImpl implements IMatriculaService{
 	@Override
 	public void actualizarMatricula(Matricula e) {
 		// TODO Auto-generated method stub
+		System.out.println("DI desde Service SINGLETON "+this.horarioGeneral);
+		this.horarioMateria.setNombreMateria("MACHINE LEARNING");
+		this.horarioMateria.setHorasSemanales("6 horas semanales");
+		this.horarioMateria.setHoraDiarias("3 dias con 2 horas diarias");
+		System.out.println("DI desde Service PROTOTYPE "+this.horarioMateria);
 		this.matriculaRepository.actualizar(e);
+		
 	}
 
 	@Override
