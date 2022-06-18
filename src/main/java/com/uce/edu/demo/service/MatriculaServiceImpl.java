@@ -1,6 +1,7 @@
 package com.uce.edu.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.modelo.HorarioGeneral;
@@ -28,12 +29,31 @@ public class MatriculaServiceImpl implements IMatriculaService{
 	
 	@Autowired
 	private HorarioMateria horarioMateria;
+	
+	
+	@Lookup
+	public ProfesorGeneral obtenerProfesorG() {
+		return null;
+	}
+	
+	@Lookup
+	public ProfesorMateria obtenerProfesorM() {
+		ProfesorMateria profeM = new ProfesorMateria();
+		profeM.setApellido("Tapia");
+		profeM.setNombre("Jose");
+		return profeM;
+	}
+	
+
 
 	@Override
 	public void ingresarMatricula(Matricula e) {
 		// TODO Auto-generated method stub
 		System.out.println("DI desde Service SINGLETON "+this.profesorGeneral);
 		System.out.println("DI desde Service PROTOTYPE "+this.profesorMateria);
+		
+		System.out.println("DI un metodo " +this.obtenerProfesorM());
+		System.out.println("DI un metodo " +this.obtenerProfesorG());
 		this.matriculaRepository.insertar(e);
 	}
 
